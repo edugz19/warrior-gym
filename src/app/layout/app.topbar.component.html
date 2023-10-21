@@ -1,0 +1,41 @@
+<div class="layout-topbar">
+    <div class="layout-topbar-logo" routerLink="">
+        <img src="assets/espartano.png" alt="logo">
+        <span>WARRIOR GYM</span>
+    </div>
+
+    <!-- <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+        <i class="pi pi-bars"></i>
+    </button> -->
+
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+
+    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <button class="p-link layout-topbar-button" [routerLink]="''">
+            <i class="pi pi-home"></i>
+            <span>Dashboard</span>
+        </button>
+        <button class="p-link layout-topbar-button" [routerLink]="'/new'">
+            <i class="pi pi-plus-circle"></i>
+            <span>Añadir Guerrero</span>
+        </button>
+        <button class="p-link layout-topbar-button" [routerLink]="'/users'">
+            <i class="pi pi-users"></i>
+            <span>Usuarios</span>
+        </button>
+        <!-- <button class="p-link layout-topbar-button" [routerLink]="'/clasification'">
+            <i class="pi pi-chart-bar"></i>
+            <span>Clasificación</span>
+        </button> -->
+        <!-- <button class="p-link layout-topbar-button" [routerLink]="'/support'">
+            <i class="pi pi-inbox"></i>
+            <span>Soporte</span>
+        </button> -->
+        <button class="p-link layout-topbar-button" (click)="logout()">
+            <i class="pi pi-sign-out"></i>
+            <span>Cerrar Sesión</span>
+        </button>
+    </div>
+</div>

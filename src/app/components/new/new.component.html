@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="card">
+    <h2>AÑADIR NUEVO GUERRERO</h2>
+    <div class="form">
+      <div class="text">
+        <span class="p-float-label nombre">
+          <input pInputText id="nombre" [(ngModel)]="nombre" />
+          <label htmlFor="nombre">Nombre</label>
+        </span>
+        <span class="p-float-label dni">
+          <input pInputText id="dni" [(ngModel)]="dni" />
+          <label htmlFor="nombre">DNI</label>
+        </span>
+      </div>
+      <div class="double-col">
+        <p-dropdown
+          [options]="abonos"
+          [(ngModel)]="abono"
+          placeholder="Selecciona un tipo de abono"
+        ></p-dropdown>
+        <span>
+          Fecha de alta:
+          <p-calendar
+            [(ngModel)]="date"
+            dateFormat="dd-mm-yy"
+            [showIcon]="true"
+          ></p-calendar>
+        </span>
+      </div>
+      <span class="buttons">
+        <button
+          pButton
+          pRipple
+          label="Guardar usuario"
+          class="p-button-success p-button-raised"
+          (click)="saveUser()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="Volver atrás"
+          class="p-button-danger p-button-raised"
+          (click)="router.navigateByUrl('')"
+        ></button>
+      </span>
+    </div>
+  </div>
+</div>
+

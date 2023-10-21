@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="card">
+      <h2>EDITAR USUARIO</h2>
+      <div class="form">
+        <div class="text">
+          <span class="p-float-label nombre">
+            <input pInputText id="nombre" [(ngModel)]="nombre" />
+            <label htmlFor="nombre">Nombre</label>
+          </span>
+          <span class="p-float-label dni">
+            <input pInputText id="dni" [(ngModel)]="dni" />
+            <label htmlFor="nombre">DNI</label>
+          </span>
+        </div>
+
+        <div class="double-col">
+          <p-dropdown
+            [options]="abonos"
+            [(ngModel)]="abono"
+            placeholder="Selecciona un tipo de abono"
+          ></p-dropdown>
+          <span>
+            Fecha de pago:
+            <p-calendar
+              [(ngModel)]="fecha_alta"
+              dateFormat="dd-mm-yy"
+              [showIcon]="true"
+            ></p-calendar>
+          </span>
+        </div>
+
+        <div class="double-col">
+          <div class="puntos">
+            Puntos Warrior: 
+                <p-badge [value]="puntos_warrior_string" size="xlarge" [severity]="getSeverity(puntos_warrior)"></p-badge>
+                <p-button icon="pi pi-plus" severity="primary" size="small" (click)="addWarriorPoint()"></p-button>
+                <p-button icon="pi pi-refresh" severity="warning" size="small" (click)="clearWarriorPoint()"></p-button>
+          </div>
+          <span>
+            Fecha de renovación:
+            <p-calendar
+              [(ngModel)]="fecha_renov"
+              dateFormat="dd-mm-yy"
+              [showIcon]="true"
+              [disabled]="true"
+            ></p-calendar>
+          </span>
+        </div>
+
+        <span class="buttons">
+          <button
+            pButton
+            pRipple
+            label="Guardar usuario"
+            class="p-button-success p-button-raised"
+            (click)="saveUser()"
+          ></button>
+          <button
+            pButton
+            pRipple
+            label="Volver atrás"
+            class="p-button-danger p-button-raised"
+            (click)="router.navigateByUrl('/users')"
+          ></button>
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  

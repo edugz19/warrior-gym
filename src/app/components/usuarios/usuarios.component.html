@@ -1,0 +1,134 @@
+<div class="table">
+  <p-table
+    [value]="users"
+    [tableStyle]="{ width: '93vw' }"
+    styleClass="p-datatable-gridlines p-datatable-striped"
+    [paginator]="true"
+    [rows]="8"
+    #dt1
+    dataKey="id"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} - {last} de un total de {totalRecords} usuarios"
+    [rowsPerPageOptions]="[5, 8, 10, 12, 15]"
+    [globalFilterFields]="['nombre']"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <button
+          pButton
+          label="Limpiar"
+          class="p-button"
+          icon="pi pi-filter-slash"
+          (click)="clear(dt1)"
+        ></button>
+        <span class="p-input-icon-left p-input-icon-right ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="Buscar ..."
+            [(ngModel)]="input"
+          />
+          <i
+            class="pi pi-times"
+            (click)="resetInput()"
+            style="cursor: pointer"
+          ></i>
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 10%">DNI</th>
+        <th style="width: 35%" pSortableColumn="nombre">
+          Nombre <p-sortIcon field="nombre"></p-sortIcon>
+        </th>
+        <th style="width: 10%">Tipo Abono</th>
+        <th style="width: 4%">Caducidad</th>
+        <th style="width: 4%">Status</th>
+        <th style="width: 6%">Acciones</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.dni }}</td>
+        <td>{{ user.nombre }}</td>
+        <td>{{ user.tipo_abono }}</td>
+        <td>{{ user.fecha_renov }}</td>
+        <td class="status">
+          <p-tag
+            [severity]="getStatus(user.fecha_renov)"
+            [value]="getLabel(user.fecha_renov)"
+          ></p-tag>
+        </td>
+        <td class="actions">
+          <p-button
+            icon="pi pi-eye"
+            styleClass="p-button p-button-sm"
+            (click)="viewUserInfo(user.dni)"
+          >
+          </p-button>
+
+          <p-button
+            icon="pi pi-user-edit"
+            styleClass="p-button-warning p-button-sm"
+            (click)="router.navigateByUrl('edit/' + user.dni)"
+            >
+          </p-button>
+          <p-button
+            icon="pi pi-trash"
+            styleClass="p-button-danger p-button-sm"
+            (click)="deleteUser(user.dni, $event)"
+          >
+          </p-button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">No existen usuarios que coinciden con la búsqueda.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog
+  header="Información del usuario"
+  [(visible)]="visible"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <h3>{{ userInfo?.nombre }}</h3>
+  <p class="abono">{{ userInfo?.tipo_abono }}</p>
+  <h1>
+    <span class="circle">{{ userInfo?.puntos_warrior }}</span>
+  </h1>
+  <p class="tag">Puntos Warrior</p>
+
+  <div class="info">
+    <p>
+      <span>Nº de usuario:</span> <span>{{ userInfo?.id }}</span>
+    </p>
+    <p>
+      <span>DNI:</span> <span>{{ userInfo?.dni }}</span>
+    </p>
+    <p>
+      <span>Fecha de registro:</span> <span>{{ userInfo?.antiguedad }}</span>
+    </p>
+    <p>
+      <span>Fecha de último pago:</span> <span>{{ userInfo?.fecha_alta }}</span>
+    </p>
+    <p>
+      <span>Fecha de renovación:</span> <span>{{ userInfo?.fecha_renov }}</span>
+    </p>
+    <p>
+      <span>Histórico de puntos warrior:</span>
+      <span>{{ userInfo?.historico_puntos_warrior }}</span>
+    </p>
+  </div>
+</p-dialog>
+
+<p-confirmDialog [style]="{ width: '50vw' }" position="top" rejectButtonStyleClass="p-button-outlined"></p-confirmDialog>

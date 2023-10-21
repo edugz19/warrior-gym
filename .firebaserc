@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "warrior-gym-61035"
+  },
+  "targets": {
+    "warrior-gym-61035": {
+      "hosting": {
+        "warrior-gym": [
+          "warrior-gym"
+        ]
+      }
+    }
+  }
+}

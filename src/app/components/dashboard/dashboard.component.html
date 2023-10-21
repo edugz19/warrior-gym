@@ -1,0 +1,17 @@
+<div class="grid top">
+    <div class="card col-12 md:col-6 lg:col-4" (click)="router.navigateByUrl('/new')">
+        <h5>Añade a nuevo guerrero</h5>
+        <i class="pi pi-plus-circle"></i>
+    </div>
+    <div class="card col-12 md:col-6 lg:col-4" (click)="router.navigateByUrl('/users')">
+        <h5>Consulta todos los usuarios</h5>
+        <i class="pi pi-list"></i>
+    </div>
+  <div class="card col-12 md:col-6 lg:col-4 chart">
+    <h5>Usuarios activos</h5>
+    <p-chart type="doughnut" [data]="data" [options]="options"></p-chart>
+  </div>
+  <!-- <div class="card col-12 md:col-6 lg:col-12">
+    <h5>Clasificación de los guerreros</h5>
+  </div> -->
+</div>

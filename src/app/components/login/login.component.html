@@ -1,0 +1,16 @@
+<div class="container">
+    <p-card [style]="{ width: '650px' }">
+        <ng-template pTemplate="header">
+            <div class="layout-topbar-logo">
+                <img src="assets/espartano.png" alt="logo">
+                <span>WARRIOR GYM</span>
+            </div>
+        </ng-template>
+        <input pInputText id="email" [(ngModel)]="email" placeholder="Correo electrónico" style="margin-bottom: 10px;" />
+        <span class="p-input-icon-right" style="width: 100%;">
+            <i [class]="showPass ? 'pi pi-eye-slash' : 'pi pi-eye'" (click)="showPass = !showPass"></i>
+            <input pInputText id="password" [type]="showPass ? 'text' : 'password'" [(ngModel)]="password" placeholder="Contraseña" />
+        </span>
+        <button pButton pRipple label="Iniciar Sesión" class="p-button-raised" (click)="login()"></button>
+    </p-card>
+</div>
